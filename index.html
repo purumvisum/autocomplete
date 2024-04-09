@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Autocomplete</title>
+    <meta name="description" content="Our first page" />
+    <meta name="keywords" content="html tutorial template" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="content">
+
+      <form autocomplete="off">
+        <div class="autocomplete">
+          <input
+            type="text"
+            data-toggle="tooltip"
+            name="searchCountries"
+            id="searchCountries"
+            onKeyUp="showResults(this.value)"
+          />
+  
+          <div class="tooltip">
+            <div class="tooltip-text">
+              Start typing...
+            </div>
+          </div>
+  
+          <div class="autocomplete-items">
+            <div id="result"></div>
+          </div>
+  
+        </div>
+        <input type="submit"data-toggle="tooltip"/>
+      </form>
+
+    </div>
+  
+  </body>
+  <script src="script.js"></script>
+</html>

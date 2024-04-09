@@ -1,0 +1,90 @@
+* { box-sizing: border-box; }
+body {
+  font: 16px Arial;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px; 
+}
+
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.autocomplete-items li {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items li:hover {
+  background-color: #e9e9e9;
+}
+
+/* Tooltip */
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    display: block;
+    top: -40px;
+    left: 1px;
+    opacity:0;
+    transition:visibility 0.3s linear,opacity 0.3s linear;
+}
+
+.tooltip-text {
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+  }
+
+/* tooltip should be net to the element in html */
+input[data-toggle="tooltip"]:hover + .tooltip{
+    visibility: visible;
+    opacity:1;
+}
+
+input[data-toggle="tooltip"]:focus + .tooltip{
+    visibility: hidden;
+    opacity:0;
+}
+
+
