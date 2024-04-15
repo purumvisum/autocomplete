@@ -18,7 +18,7 @@ let countries = [
   "Andorra",
   "Angola",
   "Anguilla",
-  "Antigua &amp; Barbuda",
+  // "Antigua &amp; Barbuda",
   "Argentina",
   "Armenia",
   "Aruba",
@@ -36,10 +36,10 @@ let countries = [
   "Bermuda",
   "Bhutan",
   "Bolivia",
-  "Bosnia &amp; Herzegovina",
+  // "Bosnia &amp; Herzegovina",
   "Botswana",
   "Brazil",
-  "British Virgin Islands",
+  // "British Virgin Islands",
   "Brunei",
   "Bulgaria",
   "Burkina Faso",
@@ -250,10 +250,19 @@ app.get('/countries', (req, res) => {
 app.post('/countries', (req, res) => {
     choosenCountries.push(req.body.searchCountry);
 
-    console.log("choosenCountries",choosenCountries)
+    
     return res.status(200).json({choosenCountries: choosenCountries})
   // return res.status(200).json({countries: countries})
 })
+
+// app.delete('/countries/:name', (req, res) => {
+//   console.log("req.body",req.body)
+//   // choosenCountries.push(req.body.searchCountry);
+
+//   // console.log("choosenCountries",choosenCountries)
+//   // return res.status(200).json({choosenCountries: choosenCountries})
+// // return res.status(200).json({countries: countries})
+// })
 
 app.listen(PORT,()=>console.log("Server is running at port "+PORT));
 

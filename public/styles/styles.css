@@ -3,6 +3,14 @@ body {
   font: 16px Arial;
 }
 
+ul {
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
 .content {
     display: flex;
     justify-content: center;
@@ -91,4 +99,16 @@ input[data-toggle="tooltip"]:hover + .tooltip{
 input[data-toggle="tooltip"]:focus + .tooltip{
     visibility: hidden;
     opacity:0;
+}
+
+.result-list li {
+  padding: 20px;
+  border-bottom: 1px solid;
+}
+
+.result-list .delete {
+  position: absolute;
+  right: 0;
+  padding: 4px 15px;
+  cursor: pointer;
 }

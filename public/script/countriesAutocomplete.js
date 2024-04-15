@@ -13,7 +13,6 @@ document.querySelector("#countriesForm").addEventListener("submit", function(e){
     e.preventDefault();  
 
     const data = Object.fromEntries(new FormData(e.target).entries());
-    console.log(data)
     
     fetch(`${url}`, {
         method: "POST",
@@ -32,6 +31,7 @@ document.querySelector("#countriesForm").addEventListener("submit", function(e){
       }).then ((json) => {
         choosenCountries = [...json.choosenCountries]
         renderChoosenCountries();
+        cleanInputField();
       })
       .catch((error) => {
         console.log(error)
@@ -43,6 +43,10 @@ cleanResultField = () => {
     let res = document.getElementById("result");
     res.innerHTML = '';
     return res; 
+}
+
+cleanInputField = () => {
+    document.getElementById("searchCountry").value = '';
 }
 
 autocompleteMatch = (input) => {
@@ -70,7 +74,7 @@ createListItemWithOnClick = (itemValue, onClickCallback) => {
     let list = '';
     let terms = autocompleteMatch(val);
     for (i=0; i<terms.length; i++) {
-      list += `<li onClick = chooseValue("${terms[i]}")>` + terms[i] + `</li>`;
+        list += `<li onClick = chooseValue("${terms[i]}")>` + terms[i] + `</li>`;
     }
     console.log("list",list)
     res.innerHTML = '<ul>' + list + '</ul>';
@@ -87,7 +91,11 @@ renderChoosenCountries = () =>{
     let res = document.getElementById("choosenCountries");
     let list = '';
     for (i=0; i<choosenCountries.length; i++) {
-        list += `<li>` + choosenCountries[i] + `</li>`;
+        list += `<li>` + choosenCountries[i] + `<span onClick = deleteValue("${choosenCountries[i]}") class = "delete">X</span></li>`;
     }
-    res.innerHTML = '<ul>' + list + '</ul>';
+    res.innerHTML = '<ul class="result-list">' + list + '</ul>';
 }
+
+deleteValue = (value) => {
+    console.log("delete");
+}  
