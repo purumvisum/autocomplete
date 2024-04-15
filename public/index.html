@@ -4,18 +4,23 @@
     <title>Autocomplete</title>
     <meta name="description" content="Our first page" />
     <meta name="keywords" content="html tutorial template" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
     <div class="content">
 
-      <form autocomplete="off">
+      <form 
+        id = "countriesForm"
+        method="POST"
+        action="/countries"
+        autocomplete="off">
         <div class="autocomplete">
           <input
+            required
             type="text"
             data-toggle="tooltip"
-            name="searchCountries"
-            id="searchCountries"
+            name="searchCountry"
+            id="searchCountry"
             onKeyUp="showResults(this.value)"
           />
   
@@ -30,11 +35,15 @@
           </div>
   
         </div>
-        <input type="submit"data-toggle="tooltip"/>
+        <button type="submit"> Choose</button>
       </form>
 
     </div>
+
+    <ul class = "choosen-countries" id="choosenCountries">
+
+    </ul>
   
   </body>
-  <script src="script.js"></script>
+  <script src="script/countriesAutocomplete.js"></script>
 </html>

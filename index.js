@@ -1,3 +1,16 @@
+const express = require('express');
+const bodyParser = require('body-parser')
+
+const app = express();
+const PORT =5001;
+
+app.use(express.static(__dirname + '/public'));
+app.use( bodyParser.json() );
+app.use(bodyParser.urlencoded({ 
+  extended: true
+})); 
+
+
 let countries = [
   "Afghanistan",
   "Albania",
@@ -223,37 +236,29 @@ let countries = [
   "Zimbabwe",
 ];
 
+let choosenCountries = []
 
-cleanResultField = () => {
-    let res = document.getElementById("result");
-    res.innerHTML = '';
-    return res; 
-}
+app.get('/', (req, res) => {
+  
+  res.render('index.html', { countries: countries });
+})
 
-autocompleteMatch = (input) => {
-    if (input == '') {
-        return [];
-      }
-      var reg = new RegExp(input)
-      return countries.filter(function(term) {
-          if (term.match(reg)) {
-            return term;
-          }
-      });
-}
+app.get('/countries', (req, res) => {
+  return res.status(200).json({countries: countries})
+})
 
- showResults = (val) => {
-    let res = cleanResultField();
-    let list = '';
-    let terms = autocompleteMatch(val);
-    for (i=0; i<terms.length; i++) {
-      list += `<li onClick = chooseValue("${terms[i]}")>` + terms[i] + `</li>`;
-    }
-    res.innerHTML = '<ul>' + list + '</ul>';
-  }
+app.post('/countries', (req, res) => {
+    choosenCountries.push(req.body.searchCountry);
 
-chooseValue = (value) => {
-    let countriesInputEl = document.getElementById("searchCountries");
-    countriesInputEl.value = value;
-    cleanResultField()
-} 
+    console.log("choosenCountries",choosenCountries)
+    return res.status(200).json({choosenCountries: choosenCountries})
+  // return res.status(200).json({countries: countries})
+})
+
+app.listen(PORT,()=>console.log("Server is running at port "+PORT));
+
+
+
+
+
+
